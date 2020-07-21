@@ -5,26 +5,73 @@
   </nav-bar>
   <home-swiper :banners="banners"></home-swiper>
   <recommend-view :recommends="recommends"></recommend-view>
+  <feature-view></feature-view>
+  <tab-control :titles="titles"　></tab-control>
+
+
+  <ul>
+   <li>列表1</li>
+   <li>列表2</li>
+   <li>列表3</li>
+   <li>列表4</li>
+   <li>列表5</li>
+   <li>列表6</li>
+   <li>列表7</li>
+   <li>列表8</li>
+   <li>列表9</li>
+   <li>列表10</li>
+   <li>列表1</li>
+   <li>列表2</li>
+   <li>列表3</li>
+   <li>列表4</li>
+   <li>列表5</li>
+   <li>列表6</li>
+   <li>列表7</li>
+   <li>列表8</li>
+   <li>列表9</li>
+   <li>列表10</li>
+   <li>列表1</li>
+   <li>列表2</li>
+   <li>列表3</li>
+   <li>列表4</li>
+   <li>列表5</li>
+   <li>列表6</li>
+   <li>列表7</li>
+   <li>列表8</li>
+   <li>列表9</li>
+   <li>列表10</li>
+   <li>列表88</li>
+  </ul>
+
 
  </div>
 </template>
 
 <script>
-import NavBar from 'components/common/navbar/NavBar'
+
 import HomeSwiper from './childComps/HomeSwiper'
 import RecommendView from './childComps/RecommendView'
+import FeatureView from './childComps/FeatureView'
+
+import NavBar from 'components/common/navbar/NavBar'
+import TabControl from 'components/content/tabControl/TabControl'
+
 import {getHomeMultidata} from 'network/home'
+
 export default {
     name:'Home',
     components:{
         NavBar,
         HomeSwiper,
-        RecommendView
+        RecommendView,
+        FeatureView,
+        TabControl
     },
     data(){
       return {
           banners:[],
-          recommends:[]
+          recommends:[],
+          titles:['流行','新款','精选']
       }
     },
     created(){
@@ -40,9 +87,9 @@ export default {
 
 <style scoped>
   #home {
-    /*padding-top: 44px;*/
-    height: 100vh;
-    position: relative;
+    padding-top: 44px;
+   /* height: 100vh;
+    position: relative;*/
   }
 
   .home-nav {
