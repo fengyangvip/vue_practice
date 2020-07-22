@@ -40,6 +40,16 @@
    <li>列表8</li>
    <li>列表9</li>
    <li>列表10</li>
+   <li>列表1</li>
+   <li>列表2</li>
+   <li>列表3</li>
+   <li>列表4</li>
+   <li>列表5</li>
+   <li>列表6</li>
+   <li>列表7</li>
+   <li>列表8</li>
+   <li>列表9</li>
+   <li>列表10</li>
    <li>列表88</li>
   </ul>
 
@@ -56,7 +66,7 @@ import FeatureView from './childComps/FeatureView'
 import NavBar from 'components/common/navbar/NavBar'
 import TabControl from 'components/content/tabControl/TabControl'
 
-import {getHomeMultidata} from 'network/home'
+import {getHomeMultidata,getHomeGoods} from 'network/home'
 
 export default {
     name:'Home',
@@ -71,15 +81,32 @@ export default {
       return {
           banners:[],
           recommends:[],
-          titles:['流行','新款','精选']
+          titles:['流行','新款','精选'],
+          goods:{
+              'pop':{page:0,list:[]},
+          }
       }
     },
     created(){
-        getHomeMultidata().then(res => {
-                this.banners = res.data.banner.list;
-                this.recommends = res.data.recommend.list;
-            }
-        )
+        this.getHomeMultidata();
+        this.getHomeGoods('pop');
+    },
+    methods:{
+        getHomeGoods(type){
+            const page = this.goods[type].page + 1;
+            getHomeGoods(type,page).then(res =>{
+                this.goods[type].list.push(...res.data.list);
+                this.goods[type].page++;
+            })
+        },
+        getHomeMultidata(){
+            getHomeMultidata().then(res => {
+                    this.banners = res.data.banner.list;
+                    this.recommends = res.data.recommend.list;
+                }
+            )
+        },
+
     }
 }
 
